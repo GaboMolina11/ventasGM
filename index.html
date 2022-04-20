@@ -94,7 +94,7 @@
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
+                    class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
@@ -120,11 +120,16 @@
                 </li>
             </ul>
             <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Carrito
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+                <div class="input-group">
+                    <div class="form-outline">
+                        <input type="search" id="form1" class="form-control" placeholder="¿Qué buscás?">
+                    </div>
+                    <button type="button" class="btn btn-primary"> Buscar
+                        <!--                        <i class="fas fa-search">-->
+
+                        </i>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -134,23 +139,23 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="images\sharkoon-nuevo-disponible.jpg" alt="First slide">
+                <img class="d-block w-100" src="images\sharkoon-nuevo-disponible.jpg" alt="1">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="images\arctic-1920.jpg" alt="Second slide">
+                <img class="d-block w-100" src="images\arctic-1920.jpg" alt="2">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="images\kda-final.jpg" alt="Third slide">
+                <img class="d-block w-100" src="images\kda-final.jpg" alt="3">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="\images\x52-pro-hotas-1920.jpg" alt="Four slide">
+                <img class="d-block w-100" src="\images\x52-pro-hotas-1920.jpg" alt="4">
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="\images\netac-1920.jpg" alt="Five slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="\images\corepseries_banner_1920x470.jpg" alt="Six slide">
-            </div>
+         <!--   <div class="carousel-item">
+                <img class="d-block w-100" src="\images\netac-1920.jpg" alt="5">
+            </div>-->
+           <!-- <div class="carousel-item">
+                <img class="d-block w-100" src="\images\corepseries_banner_1920x470.jpg" alt="6">
+            </div>-->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -174,15 +179,18 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h6 class="fw-bolder">SILLA THERMALTAKE BLACKBLUE GC-GTC-BLLFDL-01+PULSE G100</h6>
-                            <!-- Product price-->
-                            <h4><b>U$S 550 iva inc.</b></h4>
+                            <a class="btn btn-outline-dark mt-auto"
+                               href="SILLA THERMALTAKE BLACKBLUE GC-GTC-BLLFDL-01+PULSE G100.html">
+                                <h6 class="fw-bolder">SILLA THERMALTAKE BLACKBLUE GC-GTC-BLLFDL-01+PULSE G100</h6>
+                                <!-- Product price-->
+                                <h4><b>U$S 550 </b></h4>
+                            </a>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                    href="SILLA THERMALTAKE BLACKBLUE GC-GTC-BLLFDL-01+PULSE G100.html">Comprar</a>
+                                                    href="SILLA THERMALTAKE BLACKBLUE GC-GTC-BLLFDL-01+PULSE G100.html">Descripción</a>
                         </div>
                     </div>
                 </div>

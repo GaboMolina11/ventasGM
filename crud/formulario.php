@@ -1,3 +1,8 @@
+<?php
+// Verificamos la conexión con el servidor y la base de datos
+$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,11 +48,17 @@
             </div>
             <br>
 
+            <spam> Categorías </spam>
             <select class="form-select" name="categoria" aria-label="Default select example">
-                <option selected>Categoria</option>
-                <option value="1">Mouse</option>
-                <option value="2">Fuentes</option>
-                <option value="3">Three</option>
+
+                <?php $query = $mysqli->query("SELECT * FROM categorias");
+                while ($valores = mysqli_fetch_array($query)) {
+
+                    echo $valores[0];
+                    echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
+
+                }
+                ?>
             </select>
             <br>
             <div class="form-group">
@@ -56,11 +67,20 @@
             </div>
             <br>
 
+            <spam> Marcas </spam>
             <select class="form-select" name="nombreMarca" aria-label="Default select example">
-                <option selected>Marca</option>
-                <option value="1">Logitech</option>
-                <option value="2">Next</option>
-                <option value="3">Three</option>
+
+                <?php $query = $mysqli->query("SELECT * FROM marcas");
+                while ($valores = mysqli_fetch_array($query)) {
+
+                    echo $valores[0];
+                    echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
+
+                }
+                ?>
+
+
+
             </select>
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>

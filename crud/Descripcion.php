@@ -1,18 +1,19 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8"/>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>GMInformatica</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -79,15 +80,29 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 
 </div>
 <!-- Navigation-->
+<nav class="navbar navbar-expand-lg" style="
+    background: black;
+    padding: 1.5rem;
+"></nav>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="index.html">GM Informatica</a>
+        <a class="navbar-brand" href="../index.html">GM Informatica</a>
+        <div class="di spa-der-md spa-top-xs hidden-sm">
+            <span class="whatsapp"></span>
+            <div class="di may color-blanco texto-md spa-izq-xs valign-medio">
+                <div class="bold">
+                    <a href="https://api.whatsapp.com/send?phone=+59894464027"
+                       class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
+                </div>
+            </div>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link" href="#!">Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="../contacto.html">Contáctanos</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Nuestras Marcas</a>
@@ -110,11 +125,16 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
                 </li>
             </ul>
             <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Carrito
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+                <div class="input-group">
+                    <div class="form-outline">
+                        <input type="search" id="form1" class="form-control" placeholder="¿Qué buscás?">
+                    </div>
+                    <button type="button" class="btn btn-primary"> Buscar
+                        <!--                        <i class="fas fa-search">-->
+
+                        </i>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -135,12 +155,12 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
             <div class="carousel-item">
                 <img class="d-block w-100" src="..\images\x52-pro-hotas-1920.jpg" alt="Four slide">
             </div>
-            <div class="carousel-item">
+         <!--   <div class="carousel-item">
                 <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="..\images\corepseries_banner_1920x470.jpg" alt="Six slide">
-            </div>
+            </div>-->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -160,13 +180,13 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 
 
     echo ' <div class="container px-4 px-lg-5 mt-5">';
-    echo ' <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">';
-    echo '<div class="col-md-4">';
-    echo '<div class="card h-100">';
+    echo ' <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3  justify-content-center">';
+    echo '<div class="col-md-6">';
+    echo '<div class="card">';
 
 
     //$query = $mysqli -> query ("SELECT descripcion,imagenDescripcion FROM articulos where nombreProducto='$prod'");
-    $query = "SELECT descripcion,imagenDescripcion FROM articulos where nombreProducto='$prod'";
+    $query = "SELECT descripcion,imagenDescripcion,precio FROM articulos where nombreProducto='$prod'";
     $result = $mysqli->query($query);
     // echo $query;
     foreach ($result as $row) {
@@ -179,11 +199,12 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
         echo '</div>';
         echo '</div>';
 
-        echo ' <div class="col mb-10">';
-        echo '<div class="col-md-10">';
+        echo ' <div class="col mb-100">';
+        echo '<div class="col-md-70">';
 
 
-        echo '<h5 class="fw-bolder">Especificaciones Generales</h5>';
+        echo '<h3 class="fw-bold" style="min-inline-size: max-content;">Descripción del Producto</h3>';
+
         echo '<div ><!-- Product name-->';
 
 
@@ -192,8 +213,8 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
         echo '<table class="table table-striped">';
         echo '<thead>';
         echo '<tr>';
-        echo '<th scope="col">#</th>';
-        echo '<th scope="col">Descripcion</th>';
+        //echo '<th scope="col">#</th>';
+        //echo '<th scope="col">Descripción</th>';
 
         echo '</tr>';
         echo ' </thead>';
@@ -203,12 +224,14 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 
         echo ' <th scope="row">' . $row['descripcion'] . '</th>';
 
+        //echo ' <th scope="row">' . $row['precio'] . '</th>';
+
         echo '</tr>';
     }
 
-
-    echo ' </tbody>';
     echo '  </table>';
+    echo ' <h4 class="fw-bold" style="min-inline-size: max-content;"> </tbody> <thead><tr><tr scope="col">USD</tr><tr scope="row"> ' . $row['precio'] . ' iva inc</tr></tr> </thead></h4>';
+
 
     echo '</div>';
     echo '</div>';

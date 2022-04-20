@@ -18,7 +18,7 @@ create table articulos
 (
     id                int auto_increment primary key,
     nombreProducto    varchar(255),
-    precio            double,
+    precio            varchar,
     imagenCatalogo    varchar(255),
     imagenDescripcion varchar(255),
     descripcion       longtext,
