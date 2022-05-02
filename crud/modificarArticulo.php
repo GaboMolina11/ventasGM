@@ -3,6 +3,11 @@
 $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 //
 ?>
+//
+
+//
+//
+//
 
 <!DOCTYPE html>
 <html>
@@ -41,11 +46,11 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
         $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 
 
-        $query = $mysqli->query("SELECT  nombreProducto FROM  ARTICULOS WHERE nombreProducto LIKE '%" . $keywords . "%'");
+        $query = $mysqli->query("SELECT  nombreProducto FROM  ARTICULOS WHERE nombreProducto LIKE '%$keywords%'");
        
          while ($valores = mysqli_fetch_array($query)) {
       
-
+echo 'erorroororor';
          echo $valores[0];
            // echo '<h2>Se han encontrado '.$count_results.' resultados.</h2>';
 
