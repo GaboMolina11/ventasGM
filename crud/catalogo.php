@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -241,12 +241,12 @@ while ($valores = mysqli_fetch_array($query)) {
     echo ' </div>';
 
 
-    echo '<h2><span class="fw-bolder">USD ' . $valores[2] . '</span></h2>';
+    echo '<h4><span class="fw-bolder" style="min-inline-size: max-content; color: #FF0000">USD ' . $valores[2] . '</span></h4>';
     echo '</div>';
     echo '</div>';
 
     echo ' <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">';
-    echo '   <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Mas Información</a></div>';
+    echo '   <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="Descripcion.php?saludo=' . $valores[1] .'">Mas Información</a></div>';
     echo '  </div>';
     echo ' </div>';
 

@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 ?>
 
 <!DOCTYPE html>
@@ -155,12 +155,12 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             <div class="carousel-item">
                 <img class="d-block w-100" src="..\images\x52-pro-hotas-1920.jpg" alt="Four slide">
             </div>
-         <!--   <div class="carousel-item">
-                <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="..\images\corepseries_banner_1920x470.jpg" alt="Six slide">
-            </div>-->
+            <!--   <div class="carousel-item">
+                   <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
+               </div>
+               <div class="carousel-item">
+                   <img class="d-block w-100" src="..\images\corepseries_banner_1920x470.jpg" alt="Six slide">
+               </div>-->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -173,77 +173,91 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
     </div>
 </header>
 <!-- Section-->
-<section class="py-5">
 
-    <?php
-    $prod = $_GET["saludo"];
+<?php
+echo '<section class="py-5">';
 
-
-    echo ' <div class="container px-4 px-lg-5 mt-5">';
-    echo ' <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3  justify-content-center">';
-    echo '<div class="col-md-6">';
-    echo '<div class="card">';
+$prod = $_GET["saludo"];
 
 
-    //$query = $mysqli -> query ("SELECT descripcion,imagenDescripcion FROM articulos where nombreProducto='$prod'");
-    $query = "SELECT descripcion,imagenDescripcion,precio FROM articulos where nombreProducto='$prod'";
-    $result = $mysqli->query($query);
-    // echo $query;
-    foreach ($result as $row) {
-
-        //  while ($valores = mysqli_fetch_array($result)) {
-        //    echo $valores;
-        echo '<img class="card-img-top" src="' . $row['imagenDescripcion'] . '" /></a>';
+echo ' <div class="container px-4 px-lg-5 mt-5">';
+echo ' <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3  justify-content-center">';
+echo '<div class="col-md-6">';
+echo '<div class="card">';
 
 
-        echo '</div>';
-        echo '</div>';
+//$query = $mysqli -> query ("SELECT descripcion,imagenDescripcion FROM articulos where nombreProducto='$prod'");
+$query = "SELECT descripcion,imagenDescripcion,precio,nombreProducto FROM articulos where nombreProducto='$prod'";
+$result = $mysqli->query($query);
+// echo $query;
+foreach ($result as $row) {
 
-        echo ' <div class="col mb-100">';
-        echo '<div class="col-md-70">';
+    //  while ($valores = mysqli_fetch_array($result)) {
+    //    echo $valores;
+    echo '<img class="card-img-top" src="' . $row['imagenDescripcion'] . '" /></a>';
 
 
-        echo '<h3 class="fw-bold" style="min-inline-size: max-content;">Descripción del Producto</h3>';
+    echo '</div>';
+    echo '</div>';
 
-        echo '<div ><!-- Product name-->';
-
-
-        echo '</div>';
-
-        echo '<table class="table table-striped">';
-        echo '<thead>';
-        echo '<tr>';
-        //echo '<th scope="col">#</th>';
-        //echo '<th scope="col">Descripción</th>';
-
-        echo '</tr>';
-        echo ' </thead>';
-        echo '<tbody>';
-
-        echo '  <tr>';
-
-        echo ' <th scope="row">' . $row['descripcion'] . '</th>';
-
-        //echo ' <th scope="row">' . $row['precio'] . '</th>';
-
-        echo '</tr>';
-    }
 
     echo '  </table>';
-    echo ' <h4 class="fw-bold" style="min-inline-size: max-content;"> </tbody> <thead><tr><tr scope="col">USD</tr><tr scope="row"> ' . $row['precio'] . ' iva inc</tr></tr> </thead></h4>';
+    echo '<div>';
+    echo ' <h4 class="" style="min-inline-size: max-content;"> </tbody> <thead><tr scope="row"> ' . $row['nombreProducto'] . ' </tr> </thead></h4>';
+    echo '<br></br>';
+    echo ' <h4 class="fw-bold" style="min-inline-size: max-content; color: #FF0000"> </tbody> <thead><tr><tr scope="col">USD</tr><tr scope="row"> ' . $row['precio'] . ' iva inc</tr></tr> </thead></h4>';
+    echo '<br><br>';
+    echo '<a class="fcc-btn;" style="font-size: x-large;" href="../contacto.html">¡Lo Quiero!</a>';
+    echo '</div>';
 
 
     echo '</div>';
     echo '</div>';
-    ?>
+    echo '</section>';
 
-    </div>
-    </div>
+    //echo '<table class="table table-striped">';
+    echo '<thead>';
+    echo '<tr>';
+    //echo '<th scope="col">#</th>';
+    //echo '<th scope="col">Descripción</th>';
+
+    echo '</tr>';
+    echo ' </thead>';
+    echo '<tbody>';
+
+
+//     <th scope="row">' . $row['precio'] . '</th>';
+
+    echo '</tr>';
+
+    echo ' <div class="col mb-100">';
+    echo '<div class="col-md-70">';
+
+
+    //echo '<h3 class="fw-bold" style="min-inline-size: max-content;">Descripción del Producto</h3>';
+
+    echo '<div ><!-- Product name-->';
+    echo '  <tr>';
+    echo '<div class="card" style="align-content: center;"><table class="table table-striped"><thead>';
+    echo ' <tr></tr> </thead><tbody>  <tr><th> <h3 class="fw-bold" style="min-inline-size: max-content;">Descripción del Producto</h3></th></tr>';
+    echo ' <th scope="row"><textarea rows="10" disabled style=" width: 100%; height: auto; overflow: hidden">' . $row['descripcion'] . ' </textarea></th>';
+
+
+    echo ' </tbody> </table> </div>';
+
+    echo '</div>';
+}
+
+?>
+
+</div>
+</div>
+
 </section>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<!--<footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-</footer>
+</footer>-->
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

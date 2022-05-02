@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             <br>
             <div class="form-group">
                 <label>Descripcion</label>
-                <input type="text" class="form-control" name="descripcion" placeholder="descripcion">
+                <textarea type="text" class="form-control" name="descripcion" placeholder="descripcion"> </textarea>
             </div>
             <br>
 
