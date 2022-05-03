@@ -1,3 +1,32 @@
+<?php
+
+$nombre = $_POST['nombre'];
+$email = $_POST['email'];
+$telefono = $_POST['telefono'];
+$mensaje = $_POST['mensaje'];
+
+
+$destinatario = "gabriel8476@hotmail.com";
+
+
+$subject = "Consulta WEB";
+$message = nl2br("Asunto: <b>$subject</b> <br> <br> Nombre del cliente: <b>$nombre</b>   <br> <br> Email: <b>$email</b>  <br> <br> Telefono: <b>$telefono</b>  <br> <br> Mensaje: <b>$mensaje</b>");
+//para el envío en formato HTML
+$headers = "MIME-Version: 1.0\r\n";
+$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+
+
+mail($destinatario, $subject, $message, $headers);
+
+
+if (!empty($message)) {
+    $mensajeEnviado = "Su mensaje se ha enviado correctamente";
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,6 +45,11 @@
 </head>
 
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+
 <body>
 <nav class="navbar navbar-expand-lg" style="
     background: black;
@@ -24,12 +58,12 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="../VentasPrototipo/ventasGM/crud/catalogo.php">GM Informatica</a>
+        <a class="navbar-brand" href="crud/catalogo.php">GM Informatica</a>
         <div class="di spa-der-md spa-top-xs hidden-sm">
             <span class="whatsapp"></span>
             <div class="di may color-blanco texto-md spa-izq-xs valign-medio">
                 <div class="bold">
-                    <a href="https://api.whatsapp.com/send?phone=0059894464027"
+                    <a href="https://api.whatsapp.com/send?phone=094464027"
                        class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
                 </div>
             </div>
@@ -49,7 +83,7 @@
                         <section class="tm-content tm-contact">
                             <h2 class="mb-4 tm-content-title">Contáctanos</h2>
                             <p class="mb-85"> Dejanos tu consulta y te responderemos a la brevedad:</p>
-                            <form action="crud/contacto.php" method="POST" enctype="multipart/form-data"
+                            <form action="contacto.php" method="POST" enctype="multipart/form-data"
                                   autocomplete="off">
 
                                 <div class="form-group mb-4">

@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 ?>
 
 <!DOCTYPE html>
@@ -85,14 +85,18 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
     padding: 1.5rem;
 "></nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="../index.html">GM Informatica</a>
+        <a class="navbar-brand" href="../../VentasPrototipo/ventasGM/crud/catalogo.php">GM Informatica</a>
         <div class="di spa-der-md spa-top-xs hidden-sm">
             <span class="whatsapp"></span>
             <div class="di may color-blanco texto-md spa-izq-xs valign-medio">
                 <div class="bold">
-                    <a href="https://api.whatsapp.com/send?phone=+59894464027"
+                    <a href="https://api.whatsapp.com/send?phone=0059894464027"
                        class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
                 </div>
             </div>
@@ -102,7 +106,6 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
                     class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link" href="../contacto.html">Contáctanos</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Nuestras Marcas</a>
@@ -123,6 +126,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="../contacto.html">Contáctanos</a></li>
             </ul>
             <form class="d-flex">
                 <div class="input-group">
@@ -141,7 +145,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 </nav>
 <!-- Header-->
 <header class="bg-dark">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" margin-top: 8px; box-shadow: 0px 3px 15px black;">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" src="..\images\sharkoon-nuevo-disponible.jpg" alt="First slide">
@@ -206,8 +210,9 @@ foreach ($result as $row) {
     echo ' <h4 class="" style="min-inline-size: max-content;"> </tbody> <thead><tr scope="row"> ' . $row['nombreProducto'] . ' </tr> </thead></h4>';
     echo '<br></br>';
     echo ' <h4 class="fw-bold" style="min-inline-size: max-content; color: #FF0000"> </tbody> <thead><tr><tr scope="col">USD</tr><tr scope="row"> ' . $row['precio'] . ' iva inc</tr></tr> </thead></h4>';
+    echo ' <hr>';
     echo '<br><br>';
-    echo '<a class="fcc-btn;" style="font-size: x-large;" href="../contacto.html">¡Lo Quiero!</a>';
+    echo '<a class="btn btn-primary btn-lg" href="../contacto.html" role="button">!Lo quiero!</a>';
     echo '</div>';
 
 
@@ -264,3 +269,5 @@ foreach ($result as $row) {
 <script src="js/scripts.js"></script>
 </body>
 </html>
+
+

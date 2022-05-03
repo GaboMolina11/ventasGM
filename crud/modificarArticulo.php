@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 //
 ?>
 // Este es cambio de prueba para git
@@ -39,7 +39,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 
         //Conectamos con la base de datos en la que vamos a buscar
 
-        $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
+        $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 
 
         $query = $mysqli->query("SELECT  nombreProducto FROM  ARTICULOS WHERE nombreProducto LIKE '%$keywords%'");

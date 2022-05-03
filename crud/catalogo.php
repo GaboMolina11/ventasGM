@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -118,14 +118,18 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
     padding: 1.5rem;
 "></nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="../index.html">GM Informatica</a>
+        <a class="navbar-brand" href="catalogo.php">GM Informatica</a>
         <div class="di spa-der-md spa-top-xs hidden-sm">
             <span class="whatsapp"></span>
             <div class="di may color-blanco texto-md spa-izq-xs valign-medio">
                 <div class="bold">
-                    <a href="https://api.whatsapp.com/send?phone=+59894464027"
+                    <a href="https://api.whatsapp.com/send?phone=0059894464027"
                        class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
                 </div>
             </div>
@@ -135,7 +139,6 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
                     class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link" href="../contacto.html">Contáctanos</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Nuestras Marcas</a>
@@ -156,6 +159,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="../contacto.html">Contáctanos</a></li>
             </ul>
             <form class="d-flex">
                 <div class="input-group">
@@ -174,7 +178,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 </nav>
 <!-- Header-->
 <header class="bg-dark">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" margin-top: 8px; box-shadow: 0px 3px 15px black;">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" src="..\images\sharkoon-nuevo-disponible.jpg" alt="First slide">
@@ -188,12 +192,12 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
             <div class="carousel-item">
                 <img class="d-block w-100" src="..\images\x52-pro-hotas-1920.jpg" alt="Four slide">
             </div>
-         <!--   <div class="carousel-item">
-                <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="\images\corepseries_banner_1920x470.jpg" alt="Six slide">
-            </div>-->
+            <!--   <div class="carousel-item">
+                   <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
+               </div>
+               <div class="carousel-item">
+                   <img class="d-block w-100" src="\images\corepseries_banner_1920x470.jpg" alt="Six slide">
+               </div>-->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -223,7 +227,7 @@ while ($valores = mysqli_fetch_array($query)) {
 
     // echo '<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale';
     //echo'</div> ';
-    echo '  <div class="card h-100">';
+    echo '  <div class="card h-100" style="border: 1px rgba(0,0,0,.125);">';
 
     echo '<a href="Descripcion.php?saludo=' . $valores[1] . '"><img class="card-img-top" src="' . $valores[3] . '"/></a>';
 
@@ -246,12 +250,13 @@ while ($valores = mysqli_fetch_array($query)) {
     echo '</div>';
 
     echo ' <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">';
-    echo '   <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="Descripcion.php?saludo=' . $valores[1] .'">Mas Información</a></div>';
+    echo '   <div class="text-center"><a class="btn btn-outline-dark mt-auto" style="margin-top: -80% !important;" href="Descripcion.php?saludo=' . $valores[1] . '">Mas Información</a></div>';
     echo '  </div>';
     echo ' </div>';
 
 
     echo '<br>';
+//    echo '<hr class="linea-gris-claro" style="height: 1px; border: 0; background: #000dff; width: 867px;">';
     echo '<br>';
     echo '<br>';
 
