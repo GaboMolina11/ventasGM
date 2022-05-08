@@ -29,14 +29,14 @@ $imagenDescripcion = $uploadDescripcion . $FileDescripcion;
 
 move_uploaded_file($catalogotmp, $imagenCatalogo);
 move_uploaded_file($descripciontmp, $imagenDescripcion);
-$conexion = mysqli_connect("127.0.0.1", "root", "1234",
+$conexion = mysqli_connect("127.0.0.1", "root", "root",
     "venta_informatica");
 
 if ($conexion->connect_error) {
     echo "Fallo al conectar a MySQL: (" . $conexion->connect_error . ") " . $conexion->connect_error;
 }
 $consultaInsert = "INSERT INTO articulos
-    (id,nombreProducto,precio,imagenCatalogo,imagenDescripcion,descripcion,categoria,nombreMarca)
+    (id,nombreProducto,precio,imagenCatalogo,imagenDescripcion,descripcion,categoria_id,nombreMarca_id)
     VALUES (null ,'$nombreProducto', $precio ,'$imagenCatalogo', '$imagenDescripcion',' $descripcion',
     $categoria,$nombreMarca)";
 echo $consultaInsert;
