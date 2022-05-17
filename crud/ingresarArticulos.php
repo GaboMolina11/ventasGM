@@ -11,6 +11,7 @@ $precio = $_POST['precio'];
 $descripcion = $_POST['descripcion'];
 $categoria = $_POST['categoria'];
 $nombreMarca = $_POST['nombreMarca'];
+$nuevo = $_POST['stock'];
 $uploadCatalogo = "../images/";
 $uploadDescripcion = "../imagenesDescripcion/";
 //saber el nombre del archivo
@@ -36,9 +37,9 @@ if ($conexion->connect_error) {
     echo "Fallo al conectar a MySQL: (" . $conexion->connect_error . ") " . $conexion->connect_error;
 }
 $consultaInsert = "INSERT INTO articulos
-    (id,nombreProducto,precio,imagenCatalogo,imagenDescripcion,descripcion,categoria_id,nombreMarca_id)
+    (id,nombreProducto,precio,imagenCatalogo,imagenDescripcion,descripcion,categoria_id,nombreMarca_id,nuevo,stock)
     VALUES (null ,'$nombreProducto', $precio ,'$imagenCatalogo', '$imagenDescripcion',' $descripcion',
-    $categoria,$nombreMarca)";
+    $categoria,$nombreMarca,$nuevo,"1")";
 echo $consultaInsert;
 
 //mysqli_query($conexion, $consultaInsert);

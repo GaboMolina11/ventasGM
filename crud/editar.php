@@ -33,14 +33,9 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
   </div>
 </nav>
   <div class="container"> 
-    <!-- Brand and toggle get grouped for better mobile display -->
-    
-    
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    
-    <!-- /.navbar-collapse --> 
+  
   </div>
-  <!-- /.container-fluid --> 
+ 
 </nav>
 
 
@@ -49,9 +44,10 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
     <section class="row">
     <?php
     $conexion = mysqli_connect("127.0.0.1", "root", "root", "venta_informatica");
-$id=$_GET["editId"];
+    $id=$_GET["editId"];
+
 //SELECT a.id, a.nombreProducto, a.precio, a.imagenCatalogo, a.imagenDescripcion, a.descripcion, c.nombreCategoria, m.nombreMarca  FROM  articulos a,  marcas m, categorias c  where a.id=m.id and a.id=c.id;
-$query= "SELECT  a.id, a.nombreProducto, a.precio, a.imagenCatalogo, a.imagenDescripcion, a.descripcion, c.nombreCategoria, m.nombreMarca  FROM  articulos a,  marcas m, categorias c  where a.nombreMarca_id=m.id and a.Categoria_id=c.id and a.id=$id ";
+$query= "SELECT  a.id, a.nombreProducto, a.precio, a.imagenCatalogo, a.imagenDescripcion, a.descripcion, c.id as idcategoria,c.nombreCategoria,m.id, m.nombreMarca, a.nuevo FROM  articulos a,  marcas m, categorias c  where a.nombreMarca_id=m.id and a.Categoria_id=c.id and a.id=$id ";
 //echo $query;    
 //$query = "SELECT * FROM articulos where  id=$id";
 $result = mysqli_query($conexion, $query);
@@ -60,7 +56,13 @@ while($row = mysqli_fetch_array($result))
 
 ?>
 
-        <form action="editar.php" method="post" enctype="multipart/form-data">
+        <form action="editarProcesamiento.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+                <label></label>
+                <input hidden type="text" class="form-control" name="id" placeholder="Producto" value="<?php echo $id; ?>">
+
+            </div>
+      
             <div class="form-group">
                 <label>Producto</label>
                 <input type="text" class="form-control" name="producto" placeholder="Producto" value="<?php echo $row["nombreProducto"]; ?>">
@@ -89,6 +91,8 @@ while($row = mysqli_fetch_array($result))
             <spam> Categoria </spam>
             <select class="form-select" name="categoria" aria-label="Default select example">
 
+            <option value="<?php echo $row["idcategoria"]?>"> <?php echo $row["nombreCategoria"]?>" </option>
+
                 <?php $query = $mysqli->query("SELECT * FROM categorias");
                 while ($valores = mysqli_fetch_array($query)) {
 
@@ -96,11 +100,12 @@ while($row = mysqli_fetch_array($result))
                     //echo $row["nombreCategoria"];
                    // echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
 
-                    if($row["nombreCategoria"]== $valores[1]){
+                    if($row["idcategoria"]== $valores[0]){
 
-                        echo '<option value="' . $valores[0] .'" hidden> '. $valores[1] .' </option>';
-                        
-                       
+                               
+                    }else{
+
+                        echo '<option value="' . $valores[0] .'" > '. $valores[1] .' </option>';
                     }
                     
 
@@ -110,17 +115,24 @@ while($row = mysqli_fetch_array($result))
             <br>
             <div class="form-group">
                 <label>Descripcion</label>
-                <textarea type="text" class="form-control" name="descripcion" placeholder="descripcion" value="<?php echo $row["descripcion"];?>"> </textarea>
+                <textarea style=" width: 100%; height: auto; overflow: hidden  type="text" rows="16" name="descripcion" placeholder="descripcion" > <?php echo $row["descripcion"];?></textarea>
             </div>
             <br>
 
             <spam> <?php echo $row["nombreMarca"];   ?></spam>
             <select class="form-select" name="nombreMarca" aria-label="Default select example">
+
+            <option value="<?php echo $row["id"]?>"> <?php echo $row["nombreMarca"]?>" </option>
                 
 
                 <?php $query = $mysqli->query("SELECT * FROM marcas");
                 
                 while ($valores = mysqli_fetch_array($query)) {
+
+                    if($row["id"]==$valores[0]){
+
+
+                    }else{
                     
                     echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
 
@@ -130,11 +142,36 @@ while($row = mysqli_fetch_array($result))
 
                 //}
             }
-                ?>
+        }
+            ?>
+      
+             
+
+
+
+           
+                
 
 
 
             </select>
+
+            
+
+            <div class="form-group">
+                <label>Nuevo </label>
+                <br>
+                <br>
+                
+                    
+               
+<input type="radio" name="nuevo"  <?php if($row["nuevo"]=="1"){?>   checked="true"   <?php } ?> value="1"/> SI
+<input type="radio" name="nuevo"  <?php if($row["nuevo"]=="0"){?> checked="true" <?php } ?> value="0"/> NO
+                
+             
+               
+              
+            </div>
             <?php  }?>
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>
@@ -143,55 +180,11 @@ while($row = mysqli_fetch_array($result))
 
     </section>
 
-    <?php
-$nombreProducto = $_POST['producto'];
-$precio = $_POST['precio'];
-$descripcion = $_POST['descripcion'];
-$categoria = $_POST['categoria'];
-$nombreMarca = $_POST['nombreMarca'];
-$uploadCatalogo = "../images/";
-$uploadDescripcion = "../imagenesDescripcion/";
-//saber el nombre del archivo
-$archivoImagenCatalogo = $_FILES['imagenCatalogo']['name'];
-//nombre temporal del fichero
-$catalogotmp = ($_FILES['imagenCatalogo']['tmp_name']);
-
-$descripciontmp = ($_FILES['imagenDescripcion']['tmp_name']);
-
-//concatenas el nombre completo
-$imagenCatalogo = $uploadCatalogo . $archivoImagenCatalogo;
-
-
-$FileDescripcion = $_FILES['imagenDescripcion']['name'];
-$imagenDescripcion = $uploadDescripcion . $FileDescripcion;
-
-move_uploaded_file($catalogotmp, $imagenCatalogo);
-move_uploaded_file($descripciontmp, $imagenDescripcion);
-$conexion = mysqli_connect("127.0.0.1", "root", "root",
-    "venta_informatica");
-
-if ($conexion->connect_error) {
-    echo "Fallo al conectar a MySQL: (" . $conexion->connect_error . ") " . $conexion->connect_error;
-}
-$consultaUpdate = "UPDATE  articulos SET 
-    (id,nombreProducto,precio,imagenCatalogo,imagenDescripcion,descripcion,categoria_id,nombreMarca_id)
-    VALUES ($id ,'$nombreProducto', $precio ,'$imagenCatalogo', '$imagenDescripcion',' $descripcion',
-    $categoria,$nombreMarca) WHERE id=$id";
-echo $consultaInsert;
-
-//mysqli_query($conexion, $consultaInsert);
-
-if (mysqli_query($conexion, $consultaUpdate)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $consultaUpdate . "<br>" . mysqli_error($conexion);
-}
-mysqli_close($conexion);
-
-
-?>
+   
 
 </div>
 </body>
 </html>
+
+
 

@@ -99,7 +99,7 @@ $result = mysqli_query($conexion, $query);
  <a href="editar.php?editId=<?php echo $row["id"]; ?> " class="text-primary"><i class="fa fa-fw fa-edit"></i> editar</a>
                 <a href="borrar.php?delId=<?php echo $row["id"]; ?> " class="text-danger" > <i class="fa fa-fw fa-trash"></i> Eliminar</a>
                  </td>
-                 <a href="consulta.php?IdBuscar=<?php echo $cat[1];?>"><?php echo $cat[1];?></a>;
+               
      </tr>
      <?php
      }

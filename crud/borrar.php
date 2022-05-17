@@ -46,12 +46,13 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
 
 <div class="container">
 
-    <section class="row">
+<section class="row">
     <?php
     $conexion = mysqli_connect("127.0.0.1", "root", "root", "venta_informatica");
-$id=$_GET["delId"];
+    $id=$_GET["delId"];
+
 //SELECT a.id, a.nombreProducto, a.precio, a.imagenCatalogo, a.imagenDescripcion, a.descripcion, c.nombreCategoria, m.nombreMarca  FROM  articulos a,  marcas m, categorias c  where a.id=m.id and a.id=c.id;
-$query= "SELECT  a.id, a.nombreProducto, a.precio, a.imagenCatalogo, a.imagenDescripcion, a.descripcion, c.nombreCategoria, m.nombreMarca  FROM  articulos a,  marcas m, categorias c  where a.nombreMarca_id=m.id and a.Categoria_id=c.id and a.id=$id ";
+$query= "SELECT  a.id, a.nombreProducto, a.precio, a.imagenCatalogo, a.imagenDescripcion, a.descripcion, c.id as idcategoria,c.nombreCategoria,m.id, m.nombreMarca, a.nuevo FROM  articulos a,  marcas m, categorias c  where a.nombreMarca_id=m.id and a.Categoria_id=c.id and a.id=$id ";
 //echo $query;    
 //$query = "SELECT * FROM articulos where  id=$id";
 $result = mysqli_query($conexion, $query);
@@ -60,7 +61,13 @@ while($row = mysqli_fetch_array($result))
 
 ?>
 
-        <form action="editar.php" method="post" enctype="multipart/form-data">
+        <form action="borrarProcesamiento.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+                <label></label>
+                <input hidden type="text" class="form-control" name="id" placeholder="Producto" value="<?php echo $id; ?>">
+
+            </div>
+      
             <div class="form-group">
                 <label>Producto</label>
                 <input type="text" class="form-control" name="producto" placeholder="Producto" value="<?php echo $row["nombreProducto"]; ?>">
@@ -89,6 +96,8 @@ while($row = mysqli_fetch_array($result))
             <spam> Categoria </spam>
             <select class="form-select" name="categoria" aria-label="Default select example">
 
+            <option value="<?php echo $row["idcategoria"]?>"> <?php echo $row["nombreCategoria"]?>" </option>
+
                 <?php $query = $mysqli->query("SELECT * FROM categorias");
                 while ($valores = mysqli_fetch_array($query)) {
 
@@ -96,11 +105,12 @@ while($row = mysqli_fetch_array($result))
                     //echo $row["nombreCategoria"];
                    // echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
 
-                    if($row["nombreCategoria"]== $valores[1]){
+                    if($row["idcategoria"]== $valores[0]){
 
-                        echo '<option value="' . $valores[0] .'" hidden> '. $valores[1] .' </option>';
-                        
-                       
+                               
+                    }else{
+
+                        echo '<option value="' . $valores[0] .'" > '. $valores[1] .' </option>';
                     }
                     
 
@@ -110,27 +120,79 @@ while($row = mysqli_fetch_array($result))
             <br>
             <div class="form-group">
                 <label>Descripcion</label>
-                <textarea type="text" class="form-control" name="descripcion" placeholder="descripcion" value="<?php echo $row["descripcion"];?>"> </textarea>
+                <textarea style=" width: 100%; height: auto; overflow: hidden  type="text" rows="16" name="descripcion" placeholder="descripcion" > <?php echo $row["descripcion"];?></textarea>
             </div>
             <br>
 
-            <spam> Marcas </spam>
+            <spam> <?php echo $row["nombreMarca"];   ?></spam>
             <select class="form-select" name="nombreMarca" aria-label="Default select example">
 
+            <option value="<?php echo $row["id"]?>"> <?php echo $row["nombreMarca"]?>" </option>
+                
+
                 <?php $query = $mysqli->query("SELECT * FROM marcas");
+                
                 while ($valores = mysqli_fetch_array($query)) {
 
-                    //echo $valores[0];
-                    if($row["nombreMarca"]== $valores[1]){
+                    if($row["id"]==$valores[0]){
+
+
+                    }else{
+                    
                     echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
 
-                }
+                    //echo $valores[0];
+                    //if($row["nombreMarca"]== $valores[1]){
+                   // echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
+
+                //}
             }
-                ?>
+        }
+            ?>
+      
+             
+
+
+
+           
+                
 
 
 
             </select>
+
+            
+
+            <div class="form-group">
+                <label>Nuevo </label>
+                <br>
+               
+                
+                    
+               
+<input type="radio" name="nuevo"  <?php if($row["nuevo"]=="1"){?>   checked="true"   <?php } ?> value="1"/> SI
+<input type="radio" name="nuevo"  <?php if($row["nuevo"]=="0"){?> checked="true" <?php } ?> value="0"/> NO
+                
+             
+               
+              
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>STOCK </label>
+                <br>
+              
+ 
+<input type="radio" name="stock"  <?php if($row["nuevo"]=="1"){?>   checked="true"   <?php } ?> value="1"/> SI
+<input type="radio" name="stock"  <?php if($row["nuevo"]=="0"){?> checked="true" <?php } ?> value="0"/> NO
+                
+             
+               
+              
+            </div>
+
+
             <?php  }?>
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>
@@ -138,6 +200,7 @@ while($row = mysqli_fetch_array($result))
 
 
     </section>
+
 
 </div>
 </body>
