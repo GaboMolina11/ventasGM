@@ -228,7 +228,9 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 
     <div class="container col-sm-10 col-md-auto" style="border-width: thin; width: 30%; margin-left: 2%">
 
+
         <a href="consulta.php?IdBuscar=<?php echo $cat[0]; ?>"><?php echo $cat[1]; ?></a>
+
 
         <?php
 

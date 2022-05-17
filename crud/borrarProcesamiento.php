@@ -1,6 +1,42 @@
-<?
+<?php
+
+$id = $_POST['id'];
+$nombreProducto = $_POST['producto'];
+$stock = $_POST['stock'];
+$conexion = mysqli_connect("127.0.0.1", "root", "1234",
+    "venta_informatica");
+
+if ($conexion->connect_error) {
+    echo "Fallo al conectar a MySQL: (" . $conexion->connect_error . ") " . $conexion->connect_error;
+}
+
+
+    $consultaUpdate = "UPDATE  articulos SET 
+    stock=$stock
+     WHERE id=$id";
+
+//echo $consultaUpdate;
+
+
+
+
+
+
+
+//mysqli_query($conexion, $consultaInsert);
+
+if (mysqli_query($conexion, $consultaUpdate)) {
+    echo "Se dio de Baja  el producto ".$nombreProducto;
+} else {
+    echo "Error: " . $consultaUpdate . "<br>" . mysqli_error($conexion);
+}
+mysqli_close($conexion);
+
 
 ?>
+<? 
+session_start(); 
+?> 
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,26 +55,26 @@
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"></script>
 
-    <script src="jquery/jquery-3.3.1.min.js"></script>
+            <script src="jquery/jquery-3.3.1.min.js"></script>
 
-    <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
-    <script src="../bootstrap-table/bootstrap-table.js"></script>
-    <script src="../bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css">
+<script src="../bootstrap-table/bootstrap-table.js"></script>
+<script src="../bootstrap-table/bootstrap-table-zh-CN.js"></script>
 
-
+         
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="navbar-brand" href="formulario.php"> INGRESAR</a>
-            <a class="nav-item nav-link active" href="modificarArticulo.php">BUSCAR </a>
-            <a class="nav-item nav-link" href="#">LISTAR</a>
-
-        </div>
+  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <a class="navbar-brand" href="formulario.php"> INGRESAR</a>
+      <a class="nav-item nav-link active" href="modificarArticulo.php">BUSCAR </a>
+      <a class="nav-item nav-link" href="#">LISTAR</a>
+     
     </div>
+  </div>
 </nav>
 <div class="container">
 
@@ -49,12 +85,19 @@
             <input type="text" id="palabra" name="palabra">
             <input type="submit" name="search" id="search" value="Buscar">
         </form>
-
-
+        
+                        
 </div>
 </body>
 </section>
 </html>
+    
+                        
+
+
+
+
+
 
 
 

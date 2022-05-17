@@ -20,6 +20,17 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             crossorigin="anonymous"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <a class="navbar-brand" href="formulario.php"> INGRESAR</a>
+      <a class="nav-item nav-link active" href="modificarArticulo.php">BUSCAR </a>
+      <a class="nav-item nav-link" href="#">LISTAR</a>
+     
+    </div>
+  </div>
+</nav>
 <div class="container">
 
     <section class="row">
@@ -81,6 +92,19 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 
 
             </select>
+
+            <div class="form-group">
+                <label>Nuevo </label>
+                <br>
+    
+               
+<input type="radio" name="nuevo" value="1"/> SI
+<input type="radio" name="nuevo" value="0"/> NO
+                
+             
+               
+              
+            </div>
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
@@ -88,7 +112,8 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 
     </section>
 
+   
+
 </div>
 </body>
 </html>
-
