@@ -38,6 +38,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 
     </style>
 
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
@@ -50,6 +51,8 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet"/>
+
+
 </head>
 <body>
 
@@ -108,21 +111,22 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             $(this).addClass('active').siblings().removeClass('active');
             handled = true;
         });
+
     </script>
 
 
 </div>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg" style="
-    background: black;
-    padding: 1.5rem;
-"></nav>
+        background: black;
+        padding: 1.5rem;
+    "></nav>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    width: 100%;">
+        top: 0;
+        left: 0;
+        z-index: 50;
+        width: 100%;">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="catalogo.php">GM Informatica</a>
         <div class="di spa-der-md spa-top-xs hidden-sm">
@@ -140,7 +144,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                    <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Nuestras Marcas</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Arctic</a></li>
@@ -154,12 +158,13 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                    <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="../contacto.html">Contáctanos</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: black" href="../contacto.html">Contáctanos</a>
+                </li>
             </ul>
             <form class="d-flex">
                 <div class="input-group">
@@ -169,35 +174,31 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
                     <button type="button" class="btn btn-primary"> Buscar
                         <!--                        <i class="fas fa-search">-->
 
-                        </i>
+                        </input>
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </nav>
+
 <!-- Header-->
 <header class="bg-dark">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" margin-top: 8px; box-shadow: 0px 3px 15px black;">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
+         style=" margin-top: 8px; box-shadow: 0px 3px 15px black;">
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item active fill">
                 <img class="d-block w-100" src="..\images\sharkoon-nuevo-disponible.jpg" alt="First slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item fill">
                 <img class="d-block w-100" src="..\images\arctic-1920.jpg" alt="Second slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item fill">
                 <img class="d-block w-100" src="..\images\kda-final.jpg" alt="Third slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item fill">
                 <img class="d-block w-100" src="..\images\x52-pro-hotas-1920.jpg" alt="Four slide">
             </div>
-            <!--   <div class="carousel-item">
-                   <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
-               </div>
-               <div class="carousel-item">
-                   <img class="d-block w-100" src="\images\corepseries_banner_1920x470.jpg" alt="Six slide">
-               </div>-->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -210,69 +211,72 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
     </div>
 </header>
 
+<section class="py-5">
+</section>
+<div class="container" style="contain: size; margin-left: 2px">
+
+    <h2 class="di valign-medio titulo-sm color-primario may" style="padding-left: 30px; color: #3871d6">CATEGORIAS</h2>
+    <br>
+<!--    <div class="container-sm" style="border #0a58ca">-->
+
+    <?php
+    // Realizamos la consulta para extraer las categorias
+    $query = $mysqli->query("SELECT ID, UPPER(nombreCategoria) FROM categorias ORDER BY nombreCategoria ASC ");
+    while ($cat = mysqli_fetch_array($query)) {
+
+    ?>
+
+    <div class="container col-sm-10 col-md-auto" style="border-width: thin; width: 30%; margin-left: 2%">
+
+        <a href="consulta.php?IdBuscar=<?php echo $cat[0]; ?>"><?php echo $cat[1]; ?></a>
+
+        <?php
+
+        echo '</nav>';
+        echo '</div>';
+
+
+        }
+        ?>
+</div>
+<!--    </div>-->
 
 <?php
 
-echo '<section class="py-5">';
-
-echo '<div class="container px-4 px-lg-5 mt-5">';
-// echo '<div class="tota">';
-
-echo '<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">';
+echo '<div class="container px-4 px-lg-5 mt-5" style="margin-right: 1%">';
+echo '<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-md-3 justify-content-center" style="margin-right: 10px; margin-left: 17px">';
 
 // Realizamos la consulta para extraer los datos
 $query = $mysqli->query("SELECT * FROM articulos");
 while ($valores = mysqli_fetch_array($query)) {
-    echo '<div class="col mb-5">';
 
-    // echo '<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale';
-    //echo'</div> ';
-    echo '  <div class="card h-100" style="border: 1px rgba(0,0,0,.125);">';
+    echo '<div class="col mb-5" style="line-height: 0.5;">';
+    echo '<div class="card h-100" style="border: 1px rgba(0,0,0,.125);">';
+    echo '<a href="Descripcion.php?saludo=' . $valores[1] . '"><img class="card-img-top" style="width: 85%" src="' . $valores[3] . '"/></a>';
+    echo '<div class="card-body p-4">';
+    echo '<div class="text-center">';
+    echo '<h5 class="fw" style="font-size: 16.25px;">' . $valores[1] . '</h5>';
+    echo '<div class="d-flex justify-content-center small text-warning mb-2">';
+     echo '</div>';
 
-    echo '<a href="Descripcion.php?saludo=' . $valores[1] . '"><img class="card-img-top" src="' . $valores[3] . '"/></a>';
-
-    echo ' <div class="card-body p-4">';
-    echo ' <div class="text-center">';
-
-    echo '<h5 class="fw-bolder">' . $valores[1] . '</h5>';
-
-    echo ' <div class="d-flex justify-content-center small text-warning mb-2">';
-    /*    echo '<div class="bi-star-fill"></div>';
-        echo '<div class="bi-star-fill"></div>';
-        echo ' <div class="bi-star-fill"></div>';
-        echo '<div class="bi-star-fill"></div>';
-        echo ' <div class="bi-star-fill"></div>';*/
-    echo ' </div>';
-
-
-    echo '<h4><span class="fw-bolder" style="min-inline-size: max-content; color: #FF0000">USD ' . $valores[2] . '</span></h4>';
+    echo '<h4><span class="fw" style="min-inline-size: max-content; color: #FF0000; font-size: 20px;">USD ' . $valores[2] . ',00</span></h4>';
     echo '</div>';
     echo '</div>';
-
-    echo ' <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">';
-    echo '   <div class="text-center"><a class="btn btn-outline-dark mt-auto" style="margin-top: -80% !important;" href="Descripcion.php?saludo=' . $valores[1] . '">Mas Información</a></div>';
-    echo '  </div>';
     echo ' </div>';
 
-
-    echo '<br>';
-//    echo '<hr class="linea-gris-claro" style="height: 1px; border: 0; background: #000dff; width: 867px;">';
-    echo '<br>';
-    echo '<br>';
-
-
-    echo '  </div>';
-
+    echo ' </div>';
 
 }
 
-//echo '</section>';
 
 ?>
-</section>
+</div>
+</div>
 
+
+</section>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-3 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
 </footer>
 <!-- Bootstrap core JS-->

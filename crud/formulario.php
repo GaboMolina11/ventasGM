@@ -1,6 +1,6 @@
 <?php
 // Verificamos la conexión con el servidor y la base de datos
-$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
+$mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 ?>
 
 <!DOCTYPE html>
@@ -48,14 +48,14 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
             </div>
             <br>
 
-            <spam> Categorías </spam>
+            <spam> Categorías</spam>
             <select class="form-select" name="categoria" aria-label="Default select example">
 
                 <?php $query = $mysqli->query("SELECT * FROM categorias");
                 while ($valores = mysqli_fetch_array($query)) {
 
                     echo $valores[0];
-                    echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
+                    echo '<option value="' . $valores[0] . '"> ' . $valores[1] . ' </option>';
 
                 }
                 ?>
@@ -67,18 +67,17 @@ $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'venta_informatica');
             </div>
             <br>
 
-            <spam> Marcas </spam>
+            <spam> Marcas</spam>
             <select class="form-select" name="nombreMarca" aria-label="Default select example">
 
                 <?php $query = $mysqli->query("SELECT * FROM marcas");
                 while ($valores = mysqli_fetch_array($query)) {
 
                     echo $valores[0];
-                    echo '<option value="' . $valores[0] .'"> '. $valores[1] .' </option>';
+                    echo '<option value="' . $valores[0] . '"> ' . $valores[1] . ' </option>';
 
                 }
                 ?>
-
 
 
             </select>

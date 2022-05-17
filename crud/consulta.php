@@ -2,11 +2,43 @@
 // Verificamos la conexión con el servidor y la base de datos
 $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″/>
+    <style>
+
+        .py-5 {
+            display: flex; /* or inline-flex */
+        }
+
+        .item {
+            order: 3; /* default is 0 */
+        }
+
+        .tota {
+
+            flex-grow: 4;
+            width: 120px;
+            background-color: rgba(0, 0, 255, .1)
+
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+
+
+        .grid-item {
+
+            font-size: 30px;
+            text-align: center;
+        }
+
+
+    </style>
+
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -20,6 +52,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
     <link href="../css/styles.css" rel="stylesheet"/>
 </head>
 <body>
+
 
 <div>
     <!-- messages -->
@@ -75,23 +108,21 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             $(this).addClass('active').siblings().removeClass('active');
             handled = true;
         });
-
     </script>
-
 
 
 </div>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg" style="
-    background: black;
-    padding: 1.5rem;
-"></nav>
+        background: black;
+        padding: 1.5rem;
+    "></nav>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    width: 100%;">
+        top: 0;
+        left: 0;
+        z-index: 50;
+        width: 100%;">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="catalogo.php">GM Informatica</a>
         <div class="di spa-der-md spa-top-xs hidden-sm">
@@ -139,7 +170,7 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
                     <button type="button" class="btn btn-primary"> Buscar
                         <!--                        <i class="fas fa-search">-->
 
-                        </i>
+                        </input>
                     </button>
                 </div>
             </form>
@@ -148,7 +179,8 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 </nav>
 <!-- Header-->
 <!--<header class="bg-dark">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" margin-top: 8px; box-shadow: 0px 3px 15px black;">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
+         style=" margin-top: 8px; box-shadow: 0px 3px 15px black;">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" src="..\images\sharkoon-nuevo-disponible.jpg" alt="First slide">
@@ -161,12 +193,12 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="..\images\x52-pro-hotas-1920.jpg" alt="Four slide">
-            </div>
+            </div>-->
             <!--   <div class="carousel-item">
                    <img class="d-block w-100" src="..\images\netac-1920.jpg" alt="Five slide">
                </div>
                <div class="carousel-item">
-                   <img class="d-block w-100" src="..\images\corepseries_banner_1920x470.jpg" alt="Six slide">
+                   <img class="d-block w-100" src="\images\corepseries_banner_1920x470.jpg" alt="Six slide">
                </div>-->
 <!--        </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -179,131 +211,37 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
         </a>
     </div>
 </header>-->
-<!-- Section-->
 
-
-<?php
-echo '<blockquote style="margin: 0%;">';
-
-echo '<section class="py-5" style="margin-top: -2%">';
-
-$prod = $_GET["saludo"];
-
-echo ' <div class="container px-4 px-lg-5 mt-5">';
-echo ' <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3  justify-content-center">';
-echo '<div class="col-md-6" style="margin-right: 10%;">';
-echo '<div class="card">';
-
-
-$query = "SELECT descripcion,imagenDescripcion,precio,nombreProducto,ImagenCatalogo FROM articulos where nombreProducto='$prod'";
-$result = $mysqli->query($query);
-
-foreach ($result as $row) {
-
-    echo'<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">';
-
-    echo'<ol class="carousel-indicators">';
-    echo'<li data-target="#carouselExampleIndicators" style="filter: invert()" data-slide-to="0" class="active"></li>';
-    echo'<li data-target="#carouselExampleIndicators" style="filter: invert()" data-slide-to="1"></li>';
-    echo'</ol>';
-    echo'<div class="carousel-inner">';
-    echo'<div class="carousel-item active">';
-    echo '<img class="d-block w-100" src="' . $row['imagenDescripcion'] . '" alt="1" /></a>';
-    echo '</div>';
-    echo'<div class="carousel-item">';
-    echo '<img class="d-block w-100" src="' . $row['ImagenCatalogo'] . '" alt="2"/></a>';
-    echo '</div>';
-    echo '</div>';
-
-    echo '<a class="carousel-control-prev" href="#carouselExampleControls" style="filter: invert()" role="button" data-slide="prev">';
-
-    echo'<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-    echo '<span class="sr-only">Previous</span>';
-    echo '</a>';
-    echo '<a class="carousel-control-next" href="#carouselExampleControls" style="filter: invert()" role="button" data-slide="next">';
-    echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-    echo '<span class="sr-only">Next</span>';
-    echo '</a>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-
-
-    echo '</table>';
-    echo '<div>';
-    echo ' <h4 class="fw" style="font-size: 25px;"> </tbody> <thead><tr scope="row"> ' . $row['nombreProducto'] . ' </tr> </thead></h4>';
-    echo '<br></br>';
-    echo ' <h4 class="fw" style="min-inline-size: max-content; color: #FF0000; font-size: 25px;"> </tbody> <thead><tr><tr scope="col">USD</tr><tr scope="row"> ' . $row['precio'] . ',00 iva inc</tr></tr> </thead></h4>';
-
-    ?>
-    <!--    <a href="javascript:scrollto('#descripcion')"> Mas Información </a>-->
+<section class="py-5">
+</section>
+<aside class="container" style="contain: size; margin-left: 2px">
+    <h2 class="di valign-medio titulo-sm color-primario may" style="padding-left: 30px; color: #3871d6">CATEGORIAS</h2>
     <br>
-    <a href="#descripcion"> Descripción del producto</a>
 
     <?php
-    echo ' <hr>';
-    echo '<br><br>';
-    echo '<a class="btn btn-primary btn-lg" href="../contacto.html" role="button">!Lo quiero!</a>';
-    echo '</div>';
+
+    // Realizamos la consulta para extraer las categorias
+    $query = $mysqli->query("SELECT ID, UPPER(nombreCategoria) FROM categorias ORDER BY nombreCategoria ASC ");
+    while ($cat = mysqli_fetch_array($query)) {
+        ?>
+        <div class="container col-sm-10 col-md-auto" style="border-width: thin; width: 30%; margin-left: 2%"</div>
+
+        <?php
+        echo '<nav>' . $cat[1] . '</nav>';
+
+        echo '</nav>';
+        echo '</div>';
 
 
-    echo '</div>';
-    echo '</div>';
-    echo '</section>';
-    echo '</blockquote>';
-
-//    Comienza descripción de producto
-
-    echo '<blockquote style="margin: 5%">';
-    echo '<thead>';
-    echo '<tr>';
-
-    echo '</tr>';
-    echo ' </thead>';
-    echo '<tbody>';
-
-    echo '</tr>';
-
-    echo ' <div class="col mb-100">';
-    echo '<div class="col-md-70">';
-
-
-    echo '<div ><!-- Product name-->';
-    echo '  <tr>';
-    echo '<div id="descripcion" class="card" style="align-content: center;"><table class="table table-striped"><thead>';
-    echo ' <tr></tr> </thead><tbody>  <tr><th> <h3 class="fw-bold" style="min-inline-size: max-content;">Descripción del Producto</h3></th></tr>';
-    echo ' <th scope="row" style="padding: 0%"><textarea  class="cajas-texto" rows="10" disabled style=" width: 100%; height: auto; resize: none; overflow: hidden; color: #040505; background-color: oldlace">' . $row['descripcion'] . ' </textarea></th>';
-
-
-    echo ' </tbody> </table> </div>';
-
-    echo '</div>';
-    echo '</blockquote>';
-}
-
-?>
-
-</div>
-</div>
-
-</section>
-
-
-<!--El textarea de la descripción se ajusta al contenido-->
-<script>
-    let area = document.querySelectorAll(".cajas-texto")
-
-    window.addEventListener("DOMContentLoaded", () => {
-        area.forEach((elemento) => {
-            elemento.style.height = `${elemento.scrollHeight}px`
-        })
-    })
-</script>
+    }
+    ?>
+</aside>
 
 <!-- Footer-->
-<footer class="py-3 bg-dark">
+
+<!--<footer class="py-3 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-</footer>
+</footer>-->
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

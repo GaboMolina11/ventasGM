@@ -31,36 +31,32 @@ $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
             <input type="text" id="keywords" name="keywords" size="30" maxlength="30">
             <input type="submit" name="search" id="search" value="Buscar">
         </form>
-    <?php
-    //Si se ha pulsado el botón de buscar
-    if (isset($_POST['search'])) {
-        //Recogemos las claves enviadas
-        $keywords = $_POST['keywords'];
+        <?php
+        //Si se ha pulsado el botón de buscar
+        if (isset($_POST['search'])) {
+            //Recogemos las claves enviadas
+            $keywords = $_POST['keywords'];
 
-        //Conectamos con la base de datos en la que vamos a buscar
+            //Conectamos con la base de datos en la que vamos a buscar
 
-        $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
+            $mysqli = new mysqli('127.0.0.1', 'root', '1234', 'venta_informatica');
 
 
-        $query = $mysqli->query("SELECT  nombreProducto FROM  ARTICULOS WHERE nombreProducto LIKE '%$keywords%'");
-       
-         while ($valores = mysqli_fetch_array($query)) {
-      
-echo 'erorroororor';
-         echo $valores[0];
-           // echo '<h2>Se han encontrado '.$count_results.' resultados.</h2>';
+            $query = $mysqli->query("SELECT  nombreProducto FROM  ARTICULOS WHERE nombreProducto LIKE '%$keywords%'");
 
-           
-            
+            while ($valores = mysqli_fetch_array($query)) {
 
-               
-            }
+                echo 'erorroororor';
+                echo $valores[0];
+                // echo '<h2>Se han encontrado '.$count_results.' resultados.</h2>';
+
 
             }
-        
-        
-      
-    ?>
+
+        }
+
+
+        ?>
 
 </div>
 </body>
